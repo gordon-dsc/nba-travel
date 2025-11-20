@@ -16,8 +16,6 @@ The following directory tree (based on TIER Protocol 4.0) provides a simple visu
 
     -   README.md
 
-    -   example_analysis.qmd
-
     -   data/
 
         -   imported_data/
@@ -41,8 +39,6 @@ The following directory tree (based on TIER Protocol 4.0) provides a simple visu
         -   import.qmd
 
         -   cleaning.qmd
-
-        -   exploration.qmd
 
     -   output/
 
@@ -68,17 +64,13 @@ Well would you look at that, you're reading through the README.md file right now
 
     -   These instructions should walk through the documentation map, clearly outlining the relationships between scripts and files (e.g., the data/imported_data/example.csv file is passed into scripts/cleaning.qmd to produce final_data.csv)
 
-### example_analysis.qmd
-
-Project products are given at the top-level (i.e., not nested within sub-folders) of the repository. In most cases, the major product will be some sort of report that incorporates exploration, visualization and modeling to address a problem or answer a question. In the context of this project, there is no such report --- the brief example analysis notebook that accompanies and illustrates the utility of final_data.csv is "standing in" for this summative document.
-
 ### The data/ folder
 
 The data/ folder contains two sub-folders: (1) imported_data/ and (2) cleaned_data/. The imported_data/ folder will contain the data (as uncleaned R object files) you've gathered through API queries and web scraping. The cleaned_data/ folder will contain the dataset(s) that has/have been processed by the scripts/cleaning.qmd file.
 
 ### The scripts/ folder
 
-The scripts/ folder contains three Quarto notebooks: (1) import.qmd, (2) cleaning.qmd, and (3) exploration.qmd. All code related to the import of data (i.e., your `{httr2}` and `{rvest}` code) should be **well-annotated** and organized within import.qmd. All cleaning activities (e.g., rectangling, reshaping, parsing, coercion, recoding, etc.) should be well-annotated and organized within cleaning.qmd. Finally, a thoughtful exploration of the data should appear in exploration.qmd (again, well-annotated and organized).
+The scripts/ folder contains three Quarto notebooks: (1) import.qmd, (2) cleaning.qmd, and (3) exploration.qmd. All code related to the import of data (i.e., your `{httr2}` and `{rvest}` code) should be **well-annotated** and organized within import.qmd. All cleaning activities (e.g., rectangling, reshaping, parsing, coercion, recoding, etc.) should be well-annotated and organized within cleaning.qmd. 
 
 ### The output/ folder
 
