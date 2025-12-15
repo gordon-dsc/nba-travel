@@ -1,0 +1,17 @@
+Data file name:
+tatum_game_log_raw.rds
+
+Source:
+Basketball Reference
+
+Description:
+This dataset contains game-by-game performance statistics for Jayson Tatum during the 2024–2025 NBA regular season. The data was scraped from Basketball Reference using the rvest package in R.
+
+URL:
+https://www.basketball-reference.com/players/t/tatumja01/gamelog/2025
+
+Date accessed:
+2025-12-15
+
+Import script:
+scripts/import.qmd

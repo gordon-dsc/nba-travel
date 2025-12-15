@@ -1,9 +1,32 @@
 ---
-title: "Data Import Script"
+title: "NBA Data Import"
+author: "Your Name"
 format: html
 ---
 
-```{r packages}
+## Purpose
 
+This script collects raw NBA data needed to study how travel and rest impact player performance
+during the 2024–2025 season. All data imported here is saved to `data/imported_data/` as uncleaned
+files and will be processed later in `cleaning.qmd`.
+
+
+## Import example player game log
+
+Below is a raw game log table scraped from Basketball Reference.
+```{r}
+library(rvest)
+
+url <- "https://www.basketball-reference.com/players/t/tatumja01/gamelog/2025"
+
+player_page <- read_html(url)
+
+tables <- html_elements(player_page, "table")
+
+game_log <- html_table(tables[[8]])
+
+game_log
+dir.create("data/imported_data", recursive = TRUE, showWarnings = FALSE)
+saveRDS(game_log, "data/imported_data/tatum_game_log_raw.rds")
 ```
 

@@ -1,5 +1,10 @@
 # Data Wrangling Project Template
+## Project overview
 
+This project examines how travel and rest impact NBA player performance during the 2024–2025 NBA season.
+The unit of analysis is one row per player per game. Player performance is measured using points per minute played. Fatigue-related variables include days of rest since the previous game and distance traveled between games.
+
+The unit of analysis is one row per player per game. Player performance is measured using points per minute played. Fatigue-related variables include days of rest since the previous game and distance traveled between games.
 ## About this template
 
 The organizational structure (i.e., the specific way in which the files are nested within folders) of this repository is based on Project TIER's Documentation Protocol (version 4.0). [Project TIER](https://www.projecttier.org) (Teaching Integrity in Empirical Research), based out of Haverford College, is a multidisciplinary initiative created to promote reproducible data workflows in undergraduate curricula. In addition to hosting pedagogical training workshops for educators, Project TIER also maintains a guide, called the [TIER Protocol](https://www.projecttier.org/tier-protocol/protocol-4-0/), that outlines best practices in reproducible analysis. While this repository template takes considerable inspiration from the TIER Protocol, it differs in a couple key ways:
@@ -70,7 +75,7 @@ The data/ folder contains two sub-folders: (1) imported_data/ and (2) cleaned_da
 
 ### The scripts/ folder
 
-The scripts/ folder contains three Quarto notebooks: (1) import.qmd, (2) cleaning.qmd, and (3) exploration.qmd. All code related to the import of data (i.e., your `{httr2}` and `{rvest}` code) should be **well-annotated** and organized within import.qmd. All cleaning activities (e.g., rectangling, reshaping, parsing, coercion, recoding, etc.) should be well-annotated and organized within cleaning.qmd. 
+The scripts/ folder contains three Quarto notebooks: (1) import.qmd, (2) cleaning.qmd, and (3) exploration.qmd. All code related to the import of data (i.e., your `{httr2}` and `{rvest}` code) should be **well-annotated** and organized within import.qmd. All cleaning activities (e.g., rectangling, reshaping, parsing, coercion, recoding, etc.) should be well-annotated and organized within cleaning.qmd.
 
 ### The output/ folder
 
