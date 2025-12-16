@@ -60,8 +60,6 @@ project/
 │ └── worlds_best_cities_codebook.txt
 
 
-
-
 ## Instructions for Reproducing the Data
 
 To reproduce the final datasets from raw data, follow these steps:
