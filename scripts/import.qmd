@@ -124,3 +124,92 @@ saveRDS(
 )
 ```
 
+## Importing World's Best City's ranking by Scraping
+```{r}
+## Import World's Best Cities (Americas Best Cities)
+library(rvest)
+library(tidyverse)
+library(stringr)
+library(here)
+
+# URL
+wbc_url <- "https://www.worldsbestcities.com/rankings/americas-best-cities/"
+wbc_page <- read_html(wbc_url)
+
+# all text
+ranking_text <- wbc_page |>
+  html_elements("#rankings") |>
+  html_text2()
+
+# split
+city_blocks <- ranking_text |>
+  str_split("\n\\d+\\. ")
+
+# table
+cities_tbl <- tibble(
+  raw_text = city_blocks[[1]][-1]
+)
+
+# extract state data
+cities_tbl <- cities_tbl |>
+  mutate(
+    # city and state
+    city_state = str_extract(raw_text, "^[A-Za-z .'-]+, [A-Z]{2}"),
+    city = str_remove(city_state, ", [A-Z]{2}$"),
+    state = str_extract(city_state, "[A-Z]{2}$"),
+
+    # ranking
+    ranking = row_number(),
+
+    # population
+    population = str_extract(raw_text, "Metro: [0-9,]+") |>
+      str_remove("Metro: ") |>
+      str_remove_all(",") |>
+      as.numeric(),
+
+    # ranking number
+    highlighted_rank_1 = str_extract(
+      raw_text,
+      "Highlighted Rankings\\s*\\n\\s*#\\d+"
+    ) |>
+      str_extract("#\\d+") |>
+      str_remove("#") |>
+      as.numeric(),
+
+    # top two categories
+    highlighted_category_1 = str_extract(
+      raw_text,
+      "Highlighted Rankings[\\s\\S]*?#\\d+\\n([^\\n]+)"
+    ) |>
+      str_remove("Highlighted Rankings[\\s\\S]*?#\\d+\\n") |>
+      str_trim(),
+
+    highlighted_category_2 = str_extract(
+      raw_text,
+      "Highlighted Rankings[\\s\\S]*?#\\d+\\n[^\\n]+\\n#\\d+\\n([^\\n]+)"
+    ) |>
+      str_remove("Highlighted Rankings[\\s\\S]*?#\\d+\\n[^\\n]+\\n#\\d+\\n") |>
+      str_trim()
+  ) |>
+  select(
+    ranking,
+    city,
+    state,
+    population,
+    highlighted_rank_1,
+    highlighted_category_1,
+    highlighted_category_2,
+    raw_text
+  )
+
+cities_tbl |> slice(1:5)
+
+# save
+dir.create(here("data", "imported_data"), recursive = TRUE)
+saveRDS(
+  cities_tbl,
+  here("data", "imported_data", "worlds_best_cities_raw.rds")
+)
+
+```
+
