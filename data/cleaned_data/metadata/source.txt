@@ -1,0 +1,8 @@
+data file corresponding to this source file:
+games_final_clean.rds
+
+Cleaning script:
+scripts/cleaning.qmd
+
+Description:
+The dataset was created by cleaning and combining raw NBA player game log data. The cleaning process had me standardizing column names, filtering  games where players had minutes, parsing dates, converting to numeric values, computing points per minute, and creating rest  related schedule variables.

@@ -1,32 +1,126 @@
 ---
 title: "NBA Data Import"
-author: "Your Name"
+author: "Isaac"
 format: html
 ---
 
 ## Purpose
 
-This script collects raw NBA data needed to study how travel and rest impact player performance
+This collects raw NBA data needed to show how travel and rest impact these three player's performance
 during the 2024–2025 season. All data imported here is saved to `data/imported_data/` as uncleaned
 files and will be processed later in `cleaning.qmd`.
 
-
-## Import example player game log
-
-Below is a raw game log table scraped from Basketball Reference.
 ```{r}
+library(here)
 library(rvest)
+library(httr2)
+library(jsonlite)
+library(readr)
 
+dir.create(here::here("data", "imported_data"), recursive = TRUE)
+
+```
+
+## Import Tatum  game log
+
+Below is Jayson Tatum's raw game log table scraped from Basketball Reference.
+```{r}
 url <- "https://www.basketball-reference.com/players/t/tatumja01/gamelog/2025"
 
-player_page <- read_html(url)
+tatum_page <- read_html(url)
 
-tables <- html_elements(player_page, "table")
+tatum_tables <- html_elements(tatum_page, "table")
 
-game_log <- html_table(tables[[8]])
+tatum_game_log <- html_table(tatum_tables[[8]])
 
-game_log
-dir.create("data/imported_data", recursive = TRUE, showWarnings = FALSE)
-saveRDS(game_log, "data/imported_data/tatum_game_log_raw.rds")
+tatum_game_log
+
+saveRDS(
+  tatum_game_log,
+  here::here("data", "imported_data", "tatum_game_log_raw.rds")
+)
+```
+## Import  Murray game log
+
+Below is Dejounte Murray's raw game log table scraped from Basketball Reference.
+
+```{r}
+
+url <- "https://www.basketball-reference.com/players/m/murrade01/gamelog/2025"
+
+murray_page <- read_html(url)
+
+murray_tables <- html_elements(murray_page, "table")
+
+murray_game_log <- html_table(murray_tables[[8]])
+
+murray_game_log
+
+saveRDS(
+  murray_game_log,
+  here::here("data", "imported_data", "murray_game_log_raw.rds")
+)
+```
+## Import Grimes game log
+
+Below is Quentin Grimes's raw game log table scraped from Basketball Reference.
+
+```{r}
+
+url <- "https://www.basketball-reference.com/players/g/grimequ01/gamelog/2025"
+
+grimes_page <- read_html(url)
+
+grimes_tables <- html_elements(grimes_page, "table")
+
+grimes_game_log <- html_table(grimes_tables[[8]])
+
+grimes_game_log
+
+saveRDS(
+  grimes_game_log,
+  here::here("data", "imported_data", "grimes_game_log_raw.rds")
+)
+```
+## API import geocode
+
+I made an API request to openstreetmap to geocode NBA city coordinates
+```{r}
+# API request
+geo_req <- request("https://nominatim.openstreetmap.org/search") |>
+  req_url_query(
+    q = "Boston, MA",
+    format = "json",
+    limit = 1
+  ) |>
+  req_user_agent("DSC210-NBA-Project")
+
+# request
+geo_resp <- geo_req |> req_perform()
+
+# parse 
+geo_data <- geo_resp |>
+  resp_body_string() |>
+  fromJSON()
+
+geo_data
+saveRDS(
+  geo_data,
+  here::here("data", "imported_data", "boston_geocode_raw.rds")
+)
+```
+## CSV import
+
+I created this CSV file of NBA cities and imported it here.
+```{r}
+team_cities <- readr::read_csv(
+  "data/imported_data/team_cities.csv",
+  show_col_types = FALSE
+)
+
+saveRDS(
+  team_cities,
+  here::here("data", "imported_data", "team_cities_raw.rds")
+)
 ```
 

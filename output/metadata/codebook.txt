@@ -1,0 +1,35 @@
+variable name: player
+type: nominal
+description: name of the NBA player associated with the game observation.
+
+variable name: date
+type: date
+description: date the game was played.
+
+variable name: opp
+type: nominal
+description: opposing team abbr.
+
+variable name: mp
+type: continuous
+description: minutes played for the player in the game.
+
+variable name: pts
+type: discrete
+description: total points scored by the player in the game.
+
+variable name: home_away
+type: nominal
+description: tells if the game was played at home or away.
+
+variable name: ppm
+type: continuous
+description: points per minute played.
+
+variable name: days_rest
+type: continuous
+description: days since the player’s previous game.
+
+variable name: back_to_back
+type: nominal
+description: tells if the game was played on one day of rest (TRUE).

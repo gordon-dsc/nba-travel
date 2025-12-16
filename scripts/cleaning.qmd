@@ -1,8 +1,132 @@
 ---
-title: "Data Cleaning Script"
+title: "NBA Data Cleaning"
+author: "Isaac"
 format: html
 ---
 
-```{r packages}
+## Purpose
 
+This cleans and organizes raw NBA game log data for the three players
+to show how schedule related factors affect performance.
+
+## Load packages
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(dplyr)
+library(here)
+```
+
+## Cleaning Process
+
+```{r}
+
+
+## raw game logs
+
+
+tatum_raw  <- readRDS("data/imported_data/tatum_game_log_raw.rds")
+murray_raw <- readRDS("data/imported_data/murray_game_log_raw.rds")
+grimes_raw <- readRDS("data/imported_data/grimes_game_log_raw.rds")
+
+
+## column names
+
+
+tatum_raw  <- janitor::clean_names(tatum_raw)
+murray_raw <- janitor::clean_names(murray_raw)
+grimes_raw <- janitor::clean_names(grimes_raw)
+
+
+## player identifiers
+
+
+tatum_raw  <- tatum_raw  |> dplyr::mutate(player = "Jayson Tatum")
+murray_raw <- murray_raw |> dplyr::mutate(player = "Dejounte Murray")
+grimes_raw <- grimes_raw |> dplyr::mutate(player = "Quentin Grimes")
+
+
+## combine players into dataset
+
+
+games_raw <- dplyr::bind_rows(
+  tatum_raw,
+  murray_raw,
+  grimes_raw
+)
+
+##  cleaned analysis dataset
+
+
+games_clean <- games_raw |>
+
+  # only rows where player had minutes
+  dplyr::filter(!is.na(mp), mp != "") |>
+
+  # select  columns
+  dplyr::select(
+    player,
+    date,
+    opp,
+    mp,
+    pts,
+    home_away = x
+  ) |>
+
+  # clean and create variables
+  dplyr::mutate(
+
+    # parse
+    date = as.Date(
+      lubridate::parse_date_time(
+        date,
+        orders = c("mdy", "ymd", "b d, Y", "a, b d, Y")
+      )
+    ),
+
+    # convert points
+    pts = as.numeric(pts),
+
+    # convert minutes
+    mp = dplyr::if_else(
+      stringr::str_detect(mp, ":"),
+      as.numeric(lubridate::ms(mp)) / 60,
+      as.numeric(mp)
+    ),
+
+    # points per minute
+    ppm = pts / mp
+  )
+
+games_clean
+
+
+## compute rest schedule indicators
+
+games_final <- games_clean |>
+
+  # remove non-games
+  dplyr::filter(!is.na(mp), !is.na(date)) |>
+
+  dplyr::arrange(player, date) |>
+  dplyr::group_by(player) |>
+  dplyr::mutate(
+    days_rest = as.numeric(date - dplyr::lag(date)),
+    back_to_back = days_rest == 1
+  ) |>
+  dplyr::ungroup()
+
+games_final
+
+
+##  save clean dataset
+
+dir.create(here::here("data", "cleaned_data"), recursive = TRUE)
+
+saveRDS(
+  games_final,
+  here::here("data", "cleaned_data", "games_final_clean.rds")
+)
 ```

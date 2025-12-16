@@ -1,0 +1,21 @@
+Data file name:
+tatum_game_log_raw.rds; murray_game_log_raw.rds; grimes_game_log_raw.rds; team_cities_raw.rds; boston_geocode_raw.rds
+
+file corresponding to this source file:
+saved in data/imported_data/
+
+Source:
+basketball reference (web scraping), openstreetmap Nominatim (API query), I created the CSV file (file import)
+
+Description:
+player's game logs in the 2024–2025 season scraped from Basketball Reference using rvest and saved as .rds files. Geocoding API query was made to OpenStreetMap Nominatim to retrieve la and lo for Boston and saved as an .rds file. I created a CSV of NBA and imported it, saved as an .rds file.
+
+URL:
+https://www.basketball-reference.com/
+https://nominatim.openstreetmap.org/
+
+Date accessed:
+2025-12-15
+
+Import script:
+scripts/import.qmd
