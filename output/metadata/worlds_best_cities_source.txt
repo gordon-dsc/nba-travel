@@ -1,0 +1,23 @@
+data file name:
+worlds_best_cities.csv
+
+corresponding file:
+output/worlds_best_cities.csv
+
+description:
+The dataset has city level rankings and attributes for U.S. cities from the
+World’s Best Cities report. Attributes include overall city ranking, population, and highlighted
+ranking categories. The dataset is used to provide characteristics for nba game
+locations.
+
+source:
+World’s Best Cities
+
+url:
+https://www.worldsbestcities.com/rankings/americas-best-cities/
+
+date accessed:
+2025-12-16
+
+cleaning script:
+scripts/cleaning.qmd

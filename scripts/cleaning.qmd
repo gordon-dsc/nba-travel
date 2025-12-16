@@ -6,8 +6,14 @@ format: html
 
 ## Purpose
 
-This cleans and organizes raw NBA game log data for the three players
-to show how schedule related factors affect performance.
+This script cleans and organizes raw NBA games, city location, and city ranking
+data to make three analysis datasets:
+
+1. Player level game performance and rest stats  
+2. Game level geographic information which are city, state, latitude, and longitude  
+3. City level rankings from the World’s Best Cities report  
+
+All outputs are written as clean CSV files to the `output/` directory.
 
 ## Load packages
 
@@ -15,11 +21,12 @@ to show how schedule related factors affect performance.
 library(tidyverse)
 library(lubridate)
 library(janitor)
-library(dplyr)
 library(here)
+library(httr2)
+library(jsonlite)
 ```
 
-## Cleaning Process
+## Cleaning Process for Game Stats
 
 ```{r}
 
@@ -102,14 +109,10 @@ games_clean <- games_raw |>
 
 games_clean
 
-
-## compute rest schedule indicators
-
 games_final <- games_clean |>
 
-  # remove non-games
+  # remove NA games
   dplyr::filter(!is.na(mp), !is.na(date)) |>
-
   dplyr::arrange(player, date) |>
   dplyr::group_by(player) |>
   dplyr::mutate(
@@ -127,6 +130,138 @@ dir.create(here::here("data", "cleaned_data"), recursive = TRUE)
 
 saveRDS(
   games_final,
-  here::here("data", "cleaned_data", "games_final_clean.rds")
+  here::here("data", "cleaned_data", "games_final_clean.rds"))
+```
+
+## Cleaning Process for City Data from World's Best Cities
+```{r}
+wbc_raw <- readRDS(
+  here("data", "imported_data", "worlds_best_cities_raw.rds")
+)
+
+wbc_clean <- wbc_raw |>
+  select(
+    ranking,
+    city,
+    state,
+    population,
+    highlighted_rank_1,
+    highlighted_category_1,
+    highlighted_category_2
+  )
+
+wbc_clean |> slice(1:5)
+
+# save as csv
+dir.create(here("data", "cleaned_data"), recursive = TRUE)
+write_csv(
+  wbc_clean,
+  here("data", "cleaned_data", "worlds_best_cities_clean.csv")
 )
 ```
+
+## Create Game Location Dataset
+```{r}
+games_final <- readRDS(
+  here("data", "cleaned_data", "games_final_clean.rds")
+)
+
+team_cities <- readRDS(
+  here("data", "imported_data", "team_cities_raw.rds")
+)
+
+# join city and state
+games_with_location <- games_final |>
+  left_join(
+    team_cities,
+    by = c("opp" = "team")
+  ) |>
+  rename(
+    state = region
+  )
+
+games_with_location |> slice(1:5)
+
+cities_to_geocode <- games_with_location |>
+  select(city, state) |>
+  distinct()
+
+cities_to_geocode |> slice(1:5)
+
+# function to geocode city 
+geocode_city <- function(city, state) {
+  Sys.sleep(1)  
+  req <- request("https://nominatim.openstreetmap.org/search") |>
+    req_url_query(
+      q = paste(city, state),
+      format = "json",
+      limit = 1
+    ) |>
+    req_user_agent("DSC210-NBA-Project")
+
+  result <- tryCatch(
+    {
+      resp <- req |> req_perform()
+      data <- resp |> resp_body_string() |> fromJSON()
+      if (length(data) == 0) {
+        tibble(lat = NA_real_, lon = NA_real_)
+      } else {
+        tibble(
+          lat = as.numeric(data$lat[1]),
+          lon = as.numeric(data$lon[1])
+        )
+      }
+    },
+    error = function(e) {
+      tibble(lat = NA_real_, lon = NA_real_)
+    }
+  )
+  result
+}
+
+# run API per city
+geo_results <- cities_to_geocode |>
+  rowwise() |>
+  mutate(geo = list(geocode_city(city, state))) |>
+  unnest(geo) |>
+  ungroup()
+
+geo_results |> slice(1:5)
+
+## join lat/lon  to games_with_location
+
+games_with_location_final <- games_with_location |>
+  left_join(
+    geo_results,
+    by = c("city", "state")
+  )
+
+games_with_location_final |> slice(1:5)
+
+# save csv
+write_csv(
+  games_with_location_final,
+  here("data", "cleaned_data", "games_with_location_clean.csv")
+)
+
+```
+```{r}
+## final output csvs
+dir.create(here("output"), recursive = TRUE)
+
+write_csv(
+  games_final,
+  here("output", "games_final.csv")
+)
+
+write_csv(
+  games_with_location_final,
+  here("output", "games_with_location.csv")
+)
+
+write_csv(
+  wbc_clean,
+  here("output", "worlds_best_cities.csv")
+)
+```
+

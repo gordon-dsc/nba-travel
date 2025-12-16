@@ -1,0 +1,23 @@
+data file name:
+games_with_location.csv
+
+corresponding file:
+output/games_with_location.csv
+
+description:
+dataset is the player-level NBA game logs and adds geographic information for each game.
+Using team location data, and the OpenStreetMap API, each game is matched with a city,
+state, latitude, and longitude. The dataset enables analysis of travel distance with relation to player performance.
+
+source:
+Basketball Reference; OpenStreetMap API
+
+urls:
+https://www.basketball-reference.com
+https://nominatim.openstreetmap.org
+
+date accessed:
+2025-12-16
+
+cleaning script:
+scripts/cleaning.qmd

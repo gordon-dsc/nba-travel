@@ -1,0 +1,51 @@
+variable name: player
+type: character
+description: name of player.
+
+variable name: date
+type: date
+description: date when game was played.
+
+variable name: opp
+type: character
+description: opponent team.
+
+variable name: home_away
+type: character
+description: if the game was played home or away.
+
+variable name: mp
+type: numeric
+description: minutes for player in game.
+
+variable name: pts
+type: numeric
+description: points scored by player in game.
+
+variable name: ppm
+type: numeric
+description: points per minute played.
+
+variable name: days_rest
+type: numeric
+description: days since the player's last game.
+
+variable name: back_to_back
+type: logical
+description: if the game was played on consecutive days.
+
+variable name: city
+type: character
+description: city where the game was played.
+
+variable name: state
+type: character
+description: state where the game was played.
+
+variable name: lat
+type: numeric
+description: latitude of game location.
+
+variable name: lon
+type: numeric
+description: longitude of game location.

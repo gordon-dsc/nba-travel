@@ -126,17 +126,15 @@ saveRDS(
 
 ## Importing World's Best City's ranking by Scraping
 ```{r}
-## Import World's Best Cities (Americas Best Cities)
 library(rvest)
 library(tidyverse)
 library(stringr)
 library(here)
 
-# URL
 wbc_url <- "https://www.worldsbestcities.com/rankings/americas-best-cities/"
 wbc_page <- read_html(wbc_url)
 
-# all text
+# pull text
 ranking_text <- wbc_page |>
   html_elements("#rankings") |>
   html_text2()
@@ -145,22 +143,20 @@ ranking_text <- wbc_page |>
 city_blocks <- ranking_text |>
   str_split("\n\\d+\\. ")
 
-# table
+# make tibble
 cities_tbl <- tibble(
-  raw_text = city_blocks[[1]][-1]
-)
+  raw_text = city_blocks[[1]][-1])
 
 # extract state data
 cities_tbl <- cities_tbl |>
   mutate(
-    # city and state
+    # city + state
     city_state = str_extract(raw_text, "^[A-Za-z .'-]+, [A-Z]{2}"),
     city = str_remove(city_state, ", [A-Z]{2}$"),
     state = str_extract(city_state, "[A-Z]{2}$"),
-
+    
     # ranking
     ranking = row_number(),
-
     # population
     population = str_extract(raw_text, "Metro: [0-9,]+") |>
       str_remove("Metro: ") |>

@@ -1,0 +1,23 @@
+data file name:
+games_final.csv
+
+corresponding file:
+output/games_final.csv
+
+description:
+dataset contains player level NBA game logs for three players during the 2024–2025 season. 
+It has game performance statistics and schedule related columns like days of rest and 
+back-to-backs. The data is cleaned and transformed from raw Basketball Reference game 
+logs.
+
+source:
+Basketball Reference
+
+url:
+https://www.basketball-reference.com
+
+date accessed:
+2025-12-16
+
+Cleaning script:
+scripts/cleaning.qmd

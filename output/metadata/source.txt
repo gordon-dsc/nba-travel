@@ -1,8 +1,0 @@
-data file corresponding to this source file:
-games_final_clean.rds
-
-cleaning script:
-scripts/cleaning.qmd
-
-description:
-file is the final ready dataset used to see how rest and schedule related factors affect NBA player performance during the 2024–2025 season.

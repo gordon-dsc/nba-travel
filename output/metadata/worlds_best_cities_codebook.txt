@@ -1,0 +1,27 @@
+variable name: ranking
+type: numeric
+description: ranking of city in the World’s Best Cities report.
+
+variable name: city
+type: character
+description: name of the city.
+
+variable name: state
+type: character
+description: state where the city is located.
+
+variable name: population
+type: numeric
+description: population of the city.
+
+variable name: highlighted_rank_1
+type: character
+description: highest highlighted ranking for the city in report.
+
+variable name: highlighted_category_1
+type: character
+description: first category the city is highlighted in.
+
+variable name: highlighted_category_2
+type: character
+description: second category the city is highlighted in.

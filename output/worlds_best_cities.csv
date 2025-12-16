@@ -1,0 +1,101 @@
+ranking,city,state,population,highlighted_rank_1,highlighted_category_1,highlighted_category_2
+1,New York,NY,19498000,1,Sights & Landmarks,Culture
+2,Los Angeles,CA,12799000,1,Instagram Posts,Museums
+3,Chicago,IL,9263000,2,Nightlife,Airport
+4,San Francisco,CA,4567000,1,Walkability,Business Ecosystem (Tied)
+5,Seattle,WA,4045000,2,Air Quality,GDP per Capita
+6,Miami,FL,6183000,4,Airport (Tied),Nature & Parks
+7,Boston,MA,4919000,1,University,Walkability
+8,Washington,DC,6304000,1,Healthcare,Educational Attainment
+9,Las Vegas,NV,2337000,1,Attractions,Convention Center
+10,San Diego,CA,3270000,2,Nature & Parks,Attractions
+11,Orlando,FL,2818000,2,Attractions,Convention Center
+12,Atlanta,GA,6306000,4,Large Companies,Convention Center
+13,Houston,TX,7510000,3,Large Companies,Restaurants
+14,Dallas,TX,8100000,4,Airport (Tied),Large Companies
+15,Austin,TX,2473000,4,Labor Force Participation,Nightlife
+16,Denver,CO,3,2,Labor Force Participation,Biking
+17,Portland,OR,2510000,1,Biking (Tied),Air Quality
+18,Philadelphia,PA,6246000,3,University (Tied),Restaurants
+19,San Jose,CA,1946000,1,Educational Attainment,Business Ecosystem (Tied)
+20,Honolulu,HI,989000,1,Nature & Parks,Air Quality
+21,Minneapolis,MN,3712000,1,Biking (Tied),Labor Force Participation
+22,New Orleans,LA,962000,2,Shopping,Museums
+23,Nashville,TN,2104000,8,Unemployment Rate,Nightlife
+24,Tampa,FL,3343000,14,Attractions,Nature & Parks
+25,Phoenix,AZ,5070000,14,Airport (Tied),Restaurants
+26,Baltimore,MD,2834000,5,University,Green Space
+27,Salt Lake City,UT,1268000,1,Labor Force Participation,Biking
+28,Madison,WI,694000,1,Unemployment Rate,Labor Force Participation
+29,St. Louis,MO,2796000,13,Housing Affordability,Large Companies
+30,Pittsburgh,PA,2423000,5,Housing Affordability,University
+31,Charleston,SC,849000,6,Air Quality,Unemployment Rate (Tied)
+32,Providence,RI,1678000,9,Walkability,University
+33,Columbus,OH,2180000,18,Labor Force Participation (Tied),Housing Affordability
+34,Raleigh,NC,1509000,1,Green Space,Educational Attainment
+35,Charlotte,NC,2805000,5,Green Space,Airport (Tied)
+36,New Haven,CT,568000,3,University (Tied),GDP per Capita
+37,Milwaukee,WI,1560000,11,Unemployment Rate (Tied),Walkability
+38,Portland,ME,566000,5,Unemployment Rate,Biking
+39,Rochester,NY,1052000,11,Green Space,University
+40,Cleveland,OH,2159000,7,Convention Center,Housing Affordability
+41,San Antonio,TX,2704000,7,Attractions,Restaurants
+42,Buffalo,NY,1156000,16,Walkability (Tied),Biking
+43,Richmond,VA,1350000,26,Labor Force Participation (Tied),Educational Attainment
+44,Albany,NY,905000,22,GDP per Capita,Walkability
+45,Omaha,NE,985000,5,Unemployment Rate,Labor Force Participation
+46,Tucson,AZ,1063000,13,Museums,Nature & Parks
+47,Detroit,MI,4342000,12,Convention Center,Sights & Landmarks
+48,Sacramento,CA,2421000,12,Biking,Healthcare
+49,Provo,UT,733000,3,Labor Force Participation,Unemployment Rate
+50,Hartford,CT,1152000,4,Green Space,GDP per Capita
+51,Cincinnati,OH,2273000,11,Housing Affordability,Green Space
+52,Des Moines,IA,737000,5,Labor Force Participation,Housing Affordability
+53,Indianapolis,IN,2140000,18,Labor Force Participation (Tied),Attractions
+54,Durham,NC,609000,4,Educational Attainment,University
+55,Bridgeport,CT,952000,5,GDP per Capita,Educational Attainment
+56,Kansas City,MO,2220000,2,Green Space,Labor Force Participation
+57,Louisville,KY,1365000,5,Convention Center,Housing Affordability
+58,Syracuse,NY,653000,20,Poverty Rate (Tied),Green Space
+59,Harrisburg,PA,606000,8,Housing Affordability,Poverty Rate (Tied)
+60,San Juan,PR,2038000,1,Poverty Rate,Air Quality
+61,Jacksonville,FL,1713000,23,Nature & Parks,Attractions
+62,Worcester,MA,867000,6,Green Space,Healthcare
+63,Grand Rapids,MI,1163000,20,Unemployment Rate,Labour Force Participation
+64,Lancaster,PA,559000,4,Unemployment Rate,Walkability
+65,Lexington,KY,520000,20,Poverty Rate (Tied),Educational Attainment
+66,Fayetteville,AR,590000,1,Housing Affordability,Unemployment Rate
+67,Greenville,SC,975000,9,Green Space,Unemployment Rate
+68,Albuquerque,NM,924000,12,Poverty Rate,Air Quality
+69,Boise,ID,827000,3,Unemployment Rate,Biking
+70,Virginia Beach,VA,1782000,22,Nature & Parks,Labor Force Participation (Tied)
+71,Ogden,UT,658000,2,Unemployment Rate,Labor Force Participation
+72,Spokane,WA,600000,36,Healthcare,Biking
+73,Knoxville,TN,947000,15,Unemployment Rate (Tied),Housing Affordability
+74,Colorado Springs,CO,769000,10,Air Quality,Attractions
+75,Allentown,PA,874000,16,Walkability (Tied),Green Space
+76,Reno,NV,565000,11,Air Quality,Attractions
+77,Dayton,OH,814000,4,Housing Affordability,Green Space
+78,Tulsa,OK,1044000,10,Housing Affordability,Convention Center
+79,Toledo,OH,600000,2,Housing Affordability,Poverty Rate
+80,Columbia,SC,857000,14,Poverty Rate (Tied),Green Space
+81,Memphis,TN,1336000,8,Poverty Rate,Facebook Check-ins
+82,Poughkeepsie,NY,705000,24,Air Quality,Walkability
+83,Huntsville,AL,527000,6,Housing Affordability,Green Space
+84,Akron,OH,698000,10,Green Space,Housing Affordability
+85,Wichita,KS,653000,3,Housing Affordability,Large Companies
+86,Oklahoma City,OK,1478000,22,Housing Affordability,Poverty Rate
+87,Pensacola,FL,530000,28,Nature & Parks,Air Quality
+88,Oxnard,CA,830000,4,Business Ecosystem (Tied),Healthcare (Tied)
+89,Lakeland,FL,818000,3,Green Space,Poverty Rate (Tied)
+90,Birmingham,AL,1184000,19,Poverty Rate,Large Companies
+91,Greensboro,NC,790000,11,Poverty Rate (Tied),Green Space
+92,Winston-Salem,NC,696000,7,Green Space,Housing Affordability
+93,Little Rock,AR,765000,15,Housing Affordability,Poverty Rate
+94,Baton Rouge,LA,874000,9,Poverty Rate,Green Space
+95,Riverside,CA,4688000,4,Business Ecosystem (Tied),Healthcare (Tied)
+96,Scranton,PA,569000,9,Housing Affordability,Poverty Rate (Tied)
+97,Daytona Beach,FL,722000,15,Unemployment Rate (Tied),Air Quality
+98,Chattanooga,TN,580000,24,Housing Affordability,Shopping
+99,Stockton,CA,801000,2,Healthcare,Poverty Rate
+100,El Paso,TX,872000,4,Poverty Rate,Restaurants
